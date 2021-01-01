@@ -13,5 +13,7 @@ jobs:
           ls -lsah
           echo "1>$SSH_USER"
           echo "2>$DOCKERHUB_USERNAME"
+          echo "3>$SSH_PASS"
         env:
           SSH_USER: ${{ secrets.NAME1 }}
+          SSH_PASS: secretpass
