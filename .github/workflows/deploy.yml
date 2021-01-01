@@ -1,0 +1,15 @@
+name: ci
+
+on:
+  push:
+    branches: test
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: TEST1
+        run: |
+          ls -lsah
+        env:
+          SSH_USER: ${{ secrets.NAME1 }}
