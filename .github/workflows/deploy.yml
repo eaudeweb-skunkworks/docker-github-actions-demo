@@ -11,6 +11,7 @@ jobs:
       - name: TEST1
         run: |
           ls -lsah
-          echo "$SSH_USER"
+          echo "1>$SSH_USER"
+          echo "2>$DOCKERHUB_USERNAME"
         env:
           SSH_USER: ${{ secrets.NAME1 }}
