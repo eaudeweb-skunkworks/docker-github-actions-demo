@@ -14,7 +14,7 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           cat >>~/.ssh/config <<END
-          Host staging
+          Host testinstance
             HostName $SSH_HOST
             User $SSH_USER
             IdentityFile ~/.ssh/test.key
@@ -27,4 +27,4 @@ jobs:
       - name: Execute remote command
         run: |
           cat ~/.ssh/config
-          ssh $TEST_SSH_HOST 'ls -lsah'
+          ssh testinstance 'ls -lsah'
