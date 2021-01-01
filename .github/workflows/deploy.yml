@@ -11,8 +11,8 @@ jobs:
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/test.key
-          chmod 600 ~/.ssh/test.key
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
           cat >>~/.ssh/config <<END
           Host staging
             HostName $TEST_SSH_HOST
@@ -25,4 +25,6 @@ jobs:
           SSH_KEY: ${{ secrets.TEST_SSH_KEY }}
           SSH_HOST: ${{ secrets.TEST_SSH_HOST }}
       - name: Execute remote command
-        run: ssh $TEST_SSH_HOST 'ls -lsah'
+        run: |
+          cat ~/.ssh/config
+          ssh $TEST_SSH_HOST 'ls -lsah'
