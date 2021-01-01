@@ -15,8 +15,8 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           cat >>~/.ssh/config <<END
           Host staging
-            HostName ${{ secrets.TEST_SSH_HOST }}
-            User $TEST_SSH_USER
+            HostName $SSH_HOST
+            User $SSH_USER
             IdentityFile ~/.ssh/test.key
             StrictHostKeyChecking no
           END
