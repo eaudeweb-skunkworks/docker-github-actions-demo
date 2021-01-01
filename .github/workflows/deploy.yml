@@ -11,5 +11,6 @@ jobs:
       - name: TEST1
         run: |
           ls -lsah
+          echo "$SSH_USER"
         env:
           SSH_USER: ${{ secrets.NAME1 }}
