@@ -17,7 +17,7 @@ jobs:
           Host testinstance
             HostName $SSH_HOST
             User $SSH_USER
-            IdentityFile ~/.ssh/test.key
+            IdentityFile ~/.ssh/id_rsa
             StrictHostKeyChecking no
           END
         env:
