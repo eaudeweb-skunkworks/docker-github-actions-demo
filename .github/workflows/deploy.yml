@@ -24,5 +24,5 @@ jobs:
           SSH_USER: ${{ secrets.TEST_SSH_USER }}
           SSH_KEY: ${{ secrets.TEST_SSH_KEY }}
           SSH_HOST: ${{ secrets.TEST_SSH_HOST }}
-      - name: Stop the server
-        run: ssh staging 'ls -lsah'
+      - name: Execute remote command
+        run: ssh $TEST_SSH_HOST 'ls -lsah'
