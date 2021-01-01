@@ -8,12 +8,21 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - name: TEST1
+      - name: Configure SSH
         run: |
-          ls -lsah
-          echo "1>$SSH_USER"
-          echo "2>$DOCKERHUB_USERNAME"
-          echo "3>$SSH_PASS"
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/test.key
+          chmod 600 ~/.ssh/test.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $TEST_SSH_HOST
+            User $TEST_SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
         env:
-          SSH_USER: ${{ secrets.NAME1 }}
-          SSH_PASS: secretpass
+          SSH_USER: ${{ secrets.TEST_SSH_USER }}
+          SSH_KEY: ${{ secrets.TEST_SSH_KEY }}
+          SSH_HOST: ${{ secrets.TEST_SSH_HOST }}
+      - name: Stop the server
+        run: ssh staging 'ls -lsah'
